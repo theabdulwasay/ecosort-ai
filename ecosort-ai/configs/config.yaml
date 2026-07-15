@@ -1,0 +1,34 @@
+# EcoSort AI — Training Configuration
+
+data:
+  data_dir: "data/sample"        # path to ImageFolder-structured dataset
+  img_size: 224
+  val_split: 0.15
+  test_split: 0.15
+  batch_size: 32
+  num_workers: 4
+
+model:
+  backbone: "resnet18"           # options: resnet18, efficientnet_b0
+  pretrained: true
+  num_classes: 6
+  dropout: 0.3
+
+train:
+  epochs: 25
+  warmup_epochs: 3               # epochs with backbone frozen
+  lr_head: 0.001
+  lr_full: 0.0001
+  weight_decay: 0.0001
+  label_smoothing: 0.1
+  seed: 42
+  checkpoint_dir: "models"
+  early_stopping_patience: 6
+
+classes:
+  - cardboard
+  - glass
+  - metal
+  - paper
+  - plastic
+  - trash
